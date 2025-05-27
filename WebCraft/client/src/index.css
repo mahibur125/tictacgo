@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 231 48% 48%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  
+  /* Custom game colors */
+  --game-primary: 231 48% 48%; /* #6366F1 */
+  --game-secondary: 262 52% 47%; /* #8B5CF6 */
+  --game-accent: 158 64% 52%; /* #10B981 */
+  --game-error: 0 84% 60%; /* #EF4444 */
+  --game-dark: 211 13% 17%; /* #1F2937 */
+  --game-muted: 215 16% 47%; /* #6B7280 */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 231 48% 48%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-gradient-to-br from-indigo-50 to-purple-50 text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .dark body {
+    @apply bg-gradient-to-br from-gray-900 to-slate-900;
+  }
+}
+
+@layer utilities {
+  .text-game-primary {
+    color: hsl(var(--game-primary));
+  }
+  
+  .text-game-secondary {
+    color: hsl(var(--game-secondary));
+  }
+  
+  .text-game-accent {
+    color: hsl(var(--game-accent));
+  }
+  
+  .text-game-error {
+    color: hsl(var(--game-error));
+  }
+  
+  .text-game-dark {
+    color: hsl(var(--game-dark));
+  }
+  
+  .text-game-muted {
+    color: hsl(var(--game-muted));
+  }
+  
+  .bg-game-primary {
+    background-color: hsl(var(--game-primary));
+  }
+  
+  .bg-game-secondary {
+    background-color: hsl(var(--game-secondary));
+  }
+  
+  .bg-game-accent {
+    background-color: hsl(var(--game-accent));
+  }
+  
+  .bg-game-error {
+    background-color: hsl(var(--game-error));
+  }
+  
+  .border-game-primary {
+    border-color: hsl(var(--game-primary));
+  }
+  
+  .border-game-secondary {
+    border-color: hsl(var(--game-secondary));
+  }
+  
+  .hover\:bg-indigo-600:hover {
+    background-color: hsl(231 48% 42%);
+  }
+  
+  .hover\:bg-purple-600:hover {
+    background-color: hsl(262 52% 42%);
+  }
+  
+  .hover\:bg-green-600:hover {
+    background-color: hsl(158 64% 42%);
+  }
+  
+  .hover\:bg-red-600:hover {
+    background-color: hsl(0 84% 55%);
+  }
+  
+  /* Tic-Tac-Go specific animations */
+  .blink-warning {
+    animation: blinkWarning 1s infinite;
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+  
+  .scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+  
+  @keyframes blinkWarning {
+    0%, 50% { opacity: 1; transform: scale(1); }
+    25%, 75% { opacity: 0.5; transform: scale(0.95); }
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+  }
+  
+  @keyframes scaleIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .game-cell {
+      @apply w-16 h-16 text-2xl;
+    }
+    
+    .game-board-mobile {
+      @apply p-4;
+    }
+    
+    .mobile-padding {
+      @apply px-4 py-2;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .game-cell {
+      @apply w-14 h-14 text-xl;
+    }
+  }
+}
